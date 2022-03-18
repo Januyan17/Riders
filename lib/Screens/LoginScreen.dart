@@ -23,10 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
       'password': passwordController,
     };
     var res = callLoginapi().postData(logindata, 'login');
-    var body = json.decode(res.body);
+    var newbody = json.decode(res.body);
 
-    if (body['errorMessage'] == false) {
-      if (body['message'] != null) {
+    if (newbody['errorMessage'] == false) {
+      if (newbody['message'] != null) {
         print("Success");
       }
     }
@@ -146,7 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _login();
+                    },
                     color: Colors.amber[600],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
