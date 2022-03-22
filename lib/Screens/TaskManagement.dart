@@ -52,6 +52,7 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
           ),
         ],
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 35),
@@ -59,40 +60,40 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Task Management",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.deepPurple),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "Batch Process Management",
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "* Please Enter all required information to process task by batch ",
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               // Drop Down Assignment
-              Text(
+              const Text(
                 "Assignment",
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.deepPurple),
                   borderRadius: BorderRadius.circular(20),
@@ -120,15 +121,15 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               // Dropdown Type of Manage
-              Text(
+              const Text(
                 "Type Of Manage",
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -160,15 +161,15 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               // Drop Down DR code
-              Text(
+              const Text(
                 "DR Code",
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -219,16 +220,17 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                     style: TextStyle(fontWeight: FontWeight.w600),
                   )),
                   Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 140),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Vacant",
-                        hintStyle: TextStyle(fontSize: 12),
-                        border: InputBorder.none,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 135),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Vacant",
+                          hintStyle: TextStyle(fontSize: 12),
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  )),
+                  ),
                 ],
               ),
 
@@ -241,7 +243,7 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   )),
                   Expanded(
                       child: Padding(
-                    padding: const EdgeInsets.only(left: 50),
+                    padding: const EdgeInsets.only(left: 45),
                     child: TextFormField(
                       decoration: const InputDecoration(
                         hintText: "21-12-2021-16-02-2022",
@@ -262,7 +264,7 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                     fontWeight: FontWeight.w800,
                     color: Colors.deepPurple),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
 
@@ -276,14 +278,14 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   padding: const EdgeInsets.only(left: 30, bottom: 9),
                   child: TextFormField(
                     textAlign: TextAlign.justify,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: "From",
                         hintStyle: TextStyle(fontSize: 12)),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
 
@@ -297,14 +299,14 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   padding: const EdgeInsets.only(left: 30, bottom: 9),
                   child: TextFormField(
                     textAlign: TextAlign.justify,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: "To",
                         hintStyle: TextStyle(fontSize: 12)),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SizedBox(
