@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:newriders/Constraints/constants.dart';
+import 'package:newriders/ReusableWidget/reusabletextfield.dart';
 
-import '../ReusableWidget/reusabletextfield.dart';
 
 class DeptAssignmentScreen extends StatefulWidget {
   const DeptAssignmentScreen({Key? key}) : super(key: key);
@@ -132,9 +133,19 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.deepPurple),
-          onPressed: () => Navigator.of(context).pop(),
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: kPrimaryPurpleColor,
+            size: 25.0,
+          ),
+          onPressed: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => DeptAssignID()),
+            // );
+          },
         ),
         actions: [
           IconButton(
@@ -156,11 +167,24 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
           )
         ],
       ),
-      body: SingleChildScrollView(
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (OverscrollIndicatorNotification overscroll) {
+          // ignore: deprecated_member_use
+          overscroll.disallowGlow();
+          return false;
+        },
+        child:SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Form(
             key: _formKey,
+             child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: 10,
+                                  top: 10.0,
+                                  right: 20.0,
+                                  bottom: 10,
+                                ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -506,7 +530,7 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                               hintStyle: TextStyle(fontSize: 12),
                               suffixIcon: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.calendar_month))),
+                                  icon: Icon(Icons.calendar_today_rounded ))),
                         ),
                       ),
                     ),
@@ -549,7 +573,7 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                               hintStyle: TextStyle(fontSize: 12),
                               suffixIcon: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.calendar_month))),
+                                  icon: Icon(Icons.calendar_today_rounded ))),
                         ),
                       ),
                     ),
@@ -885,6 +909,8 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
           ),
         ),
       ),
+      ),
+      ),
     );
   }
 
@@ -921,20 +947,23 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
             ),
             actions: [
               Center(
-                child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.deepPurple),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)))),
-                  child: const Text(
-                    "Ok",
-                    style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
+                child: SizedBox(
+                  width: 80.0,
+                  child: TextButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.deepPurple),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)))),
+                    child: const Text(
+                      "OK",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    onPressed: () {},
                   ),
-                  onPressed: () {},
                 ),
               ),
             ],
