@@ -108,6 +108,7 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
   TextEditingController businessclosecontroller = TextEditingController();
   TextEditingController remarkcontroller = TextEditingController();
 
+  bool click = true;
   actionsheetFile(BuildContext context) {
     showCupertinoModalPopup(
       context: context,
@@ -139,11 +140,32 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
         return CupertinoActionSheet(
           actions: [
             CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("#"))),
+              onPressed: () {
+                // print("Hello");
+                setState(() {
+                  click = !click;
+                });
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("#"),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 7 / 10,
+                  ),
+                  Visibility(
+                      visible: click,
+                      child: const Icon(
+                        Icons.arrow_right_alt,
+                      ))
+                ],
+              ),
+            ),
             CupertinoActionSheetAction(
-                onPressed: () {},
+                onPressed: () {
+                  print("Hello Wolrd");
+                },
                 child: const Align(
                     alignment: Alignment.topLeft, child: Text("IWK ID"))),
             CupertinoActionSheetAction(
