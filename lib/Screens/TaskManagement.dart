@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:newriders/Constraints/constants.dart';
 
 class TaskManagementScreen extends StatefulWidget {
   const TaskManagementScreen({Key? key}) : super(key: key);
@@ -411,12 +412,20 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
     'D44-One and Half Storey Bungalow'
   ];
 
+  String statusinitvalue = 'Select';
+  final statusvalue = [
+    'Select',
+    'Complete',
+    'Uncomplete',
+  ];
+
   String propertyusageinitvalue = 'Select';
   final propertyusagepevalue = ['Select', 'C', 'D'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.deepPurple),
@@ -512,6 +521,7 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                 height: 30,
               ),
               // Dropdown Type of Manage
+
               const Text(
                 "Type Of Manage",
                 style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -548,237 +558,326 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+
+           
               // Drop Down DR code
-              const Text(
-                "DR Code",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: DropdownButton<String>(
-                  underline: Container(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
-                  ),
-                  value: DRcodeinitvalue,
-                  isExpanded: true,
-                  items: DRcode.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      DRcodeinitvalue = value!;
-                    });
-                  },
-                ),
-              ),
-              // Drop Down
-              const SizedBox(
+              manageinitvalue == "DR Code"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "NOB Code",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: DropdownButton<String>(
-                  underline: Container(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
-                  ),
-                  value: NOBinitvalue,
-                  isExpanded: true,
-                  items: NOBvalue.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      NOBinitvalue = value!;
-                    });
-                  },
-                ),
-              ),
+                        const Text(
+                          "DR Code",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.deepPurple,
+                            ),
+                            value: DRcodeinitvalue,
+                            isExpanded: true,
+                            items: DRcode.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                DRcodeinitvalue = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               // Drop Down
-              const SizedBox(
+              manageinitvalue == "Nature of Business"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "Type Of Property",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                        const Text(
+                          "NOB Code",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.deepPurple,
+                            ),
+                            value: NOBinitvalue,
+                            isExpanded: true,
+                            items: NOBvalue.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                NOBinitvalue = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
+              // Drop Down
+              manageinitvalue == "Update Type of Property"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           const SizedBox(
+                height: 30,
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: DropdownButton<String>(
-                  underline: Container(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
-                  ),
-                  value: updatetypeinitvalue,
-                  isExpanded: true,
-                  items: updatetypevalue.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      updatetypeinitvalue = value!;
-                    });
-                  },
-                ),
-              ),
-
+                        const Text(
+                          "Type Of Property",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.deepPurple,
+                            ),
+                            value: updatetypeinitvalue,
+                            isExpanded: true,
+                            items: updatetypevalue.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                updatetypeinitvalue = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               // DropDown
-              const SizedBox(
+              manageinitvalue == "Property Usage"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "Property Usage",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: DropdownButton<String>(
-                  underline: Container(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.deepPurple,
-                  ),
-                  value: propertyusageinitvalue,
-                  isExpanded: true,
-                  items: propertyusagepevalue.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      propertyusageinitvalue = value!;
-                    });
-                  },
-                ),
-              ),
+                        const Text(
+                          "Property Usage",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.deepPurple,
+                            ),
+                            value: propertyusageinitvalue,
+                            isExpanded: true,
+                            items: propertyusagepevalue.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                propertyusageinitvalue = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               // Date
-              const SizedBox(
+              manageinitvalue == "Visit Date"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           const SizedBox(
                 height: 30,
               ),
-              const Text(
-                "Visit Date",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, bottom: 9),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'mm/dd/yyyy',
-                        hintStyle: TextStyle(fontSize: 12),
-                        suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.calendar_today_rounded))),
-                  ),
-                ),
-              ),
+                        const Text(
+                          "Visit Date",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30, bottom: 9),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'mm/dd/yyyy',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  suffixIcon: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.calendar_today_rounded,
+                                        color: kPrimaryPurpleColor,
+                                      ))),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
 // date 2
-
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                "Update Reminder",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, bottom: 9),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'mm/dd/yyyy',
-                        hintStyle: TextStyle(fontSize: 12),
-                        suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.calendar_today_rounded))),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
+              manageinitvalue == "Update Reminder"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Update Reminder",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30, bottom: 9),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'mm/dd/yyyy',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  suffixIcon: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.calendar_today_rounded,
+                                        color: kPrimaryPurpleColor,
+                                      ))),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
+              // DropDown
+              manageinitvalue == "Complete Status"
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Complete Status",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.deepPurple,
+                            ),
+                            value: statusinitvalue,
+                            isExpanded: true,
+                            items: statusvalue.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                statusinitvalue = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
 
               ///Remark
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Text(
                     "Remark",
                     style: const TextStyle(fontSize: 12, color: Colors.grey),

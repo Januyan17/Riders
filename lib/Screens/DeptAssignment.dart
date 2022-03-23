@@ -146,10 +146,11 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
         return CupertinoActionSheet(
           actions: [
             CupertinoActionSheetAction(
-              onPressed: () {
+              onPressed: (){
                 setState(() {
                   tick = true;
                 });
+               
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
