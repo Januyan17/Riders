@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newriders/Constraints/constants.dart';
@@ -133,32 +135,35 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
     );
   }
 
+  bool tick = false;
+
   actionsheetSearch(BuildContext context) {
     showCupertinoModalPopup(
       context: context,
       builder: (context) {
+         return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
         return CupertinoActionSheet(
           actions: [
             CupertinoActionSheetAction(
               onPressed: () {
-                // print("Hello");
                 setState(() {
-                  click = !click;
+                  tick = true;
                 });
               },
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text("#"),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 7 / 10,
                   ),
-                  Visibility(
-                      visible: click,
-                      child: const Icon(
-                        Icons.arrow_right_alt,
-                      ))
+                  tick == true
+                      ? Icon(
+                          Icons.arrow_right_alt,
+                        )
+                      : SizedBox(),
                 ],
               ),
             ),
@@ -199,6 +204,8 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
             onPressed: () => Navigator.of(context).pop(),
           ),
         );
+      },
+         );
       },
     );
   }
