@@ -120,6 +120,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
             GestureDetector(
               child: const Text("Upload"),
               onTap: () {},
+            ),
+            GestureDetector(
+              child: const Text("Cancel"),
+              onTap: () {},
             )
           ],
         ),
