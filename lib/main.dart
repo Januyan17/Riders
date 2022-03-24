@@ -6,6 +6,6 @@ import 'Screens/DeptAssignment.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: TaskManagementScreen(),
+    home: DeptAssignmentScreen(),
   ));
 }

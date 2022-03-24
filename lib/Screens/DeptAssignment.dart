@@ -141,72 +141,72 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
     showCupertinoModalPopup(
       context: context,
       builder: (context) {
-         return StatefulBuilder(
+        return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
-        return CupertinoActionSheet(
-          actions: [
-            CupertinoActionSheetAction(
-              onPressed: (){
-                setState(() {
-                  tick = true;
-                });
-               
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("#"),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 7 / 10,
+            return CupertinoActionSheet(
+              actions: [
+                CupertinoActionSheetAction(
+                  onPressed: () {
+                    setState(() {
+                      tick = true;
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("#"),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 7 / 10,
+                      ),
+                      tick == true
+                          ? Icon(
+                              Icons.arrow_right_alt,
+                            )
+                          : SizedBox(),
+                    ],
                   ),
-                  tick == true
-                      ? Icon(
-                          Icons.arrow_right_alt,
-                        )
-                      : SizedBox(),
-                ],
+                ),
+                CupertinoActionSheetAction(
+                    onPressed: () {
+                      print("Hello Wolrd");
+                    },
+                    child: const Align(
+                        alignment: Alignment.topLeft, child: Text("IWK ID"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft, child: Text("San"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft, child: Text("Owner 1"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft, child: Text("Address"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("Assign Date"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("Payment Update"))),
+                CupertinoActionSheetAction(
+                    onPressed: () {},
+                    child: const Align(
+                        alignment: Alignment.topLeft, child: Text("Status"))),
+              ],
+              cancelButton: CupertinoActionSheetAction(
+                child: const Text("Cancel"),
+                onPressed: () => Navigator.of(context).pop(),
               ),
-            ),
-            CupertinoActionSheetAction(
-                onPressed: () {
-                  print("Hello Wolrd");
-                },
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("IWK ID"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("San"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("Owner 1"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("Address"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("Assign Date"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("Payment Update"))),
-            CupertinoActionSheetAction(
-                onPressed: () {},
-                child: const Align(
-                    alignment: Alignment.topLeft, child: Text("Status"))),
-          ],
-          cancelButton: CupertinoActionSheetAction(
-            child: const Text("Cancel"),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
+            );
+          },
         );
-      },
-         );
       },
     );
   }
@@ -306,10 +306,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       height: 10,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       height: 45,
                       width: MediaQuery.of(context).size.width,
@@ -355,7 +355,7 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                           height: 45,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.deepPurple),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(25),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 30, bottom: 9),
@@ -367,7 +367,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                                       onPressed: () {
                                         actionsheetFile(context);
                                       },
-                                      icon: Icon(Icons.keyboard_arrow_down))),
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down,
+                                        color: kPrimaryPurpleColor,
+                                      ))),
                             ),
                           ),
                         ),
@@ -595,32 +598,45 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.deepPurple),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30, bottom: 9),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter Text';
-                                }
-                                return null;
-                              },
-                              controller: visitdatecontroller,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(fontSize: 12),
-                                  suffixIcon: IconButton(
-                                      onPressed: () {},
-                                      icon:
-                                          Icon(Icons.calendar_today_rounded))),
+                        TextFormField(
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black),
+                          cursorColor: kPrimaryPurpleColor,
+                          keyboardType: TextInputType.text,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Field Required';
+                            }
+                          },
+                          controller: visitdatecontroller,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon:
+                                    const Icon(Icons.calendar_month_outlined)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            contentPadding: EdgeInsets.fromLTRB(25, 10, 10, 0),
+                            fillColor: kPrimaryWhiteColor,
+                            filled: true,
+                            enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)),
+                              borderSide:
+                                  BorderSide(color: kPrimaryPurpleColor),
+                              gapPadding: 0,
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     SizedBox(
@@ -633,38 +649,51 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Up Date Reminder",
+                          "Update Reminder",
                           style: TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.deepPurple),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30, bottom: 9),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter Text';
-                                }
-                                return null;
-                              },
-                              controller: updateremindercontroller,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(fontSize: 12),
-                                  suffixIcon: IconButton(
-                                      onPressed: () {},
-                                      icon:
-                                          Icon(Icons.calendar_today_rounded))),
+                        TextFormField(
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black),
+                          cursorColor: kPrimaryPurpleColor,
+                          keyboardType: TextInputType.text,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Field Required';
+                            }
+                          },
+                          controller: updateremindercontroller,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon:
+                                    const Icon(Icons.calendar_month_outlined)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            contentPadding: EdgeInsets.fromLTRB(25, 10, 10, 0),
+                            fillColor: kPrimaryWhiteColor,
+                            filled: true,
+                            enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)),
+                              borderSide:
+                                  BorderSide(color: kPrimaryPurpleColor),
+                              gapPadding: 0,
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -684,10 +713,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       height: 10,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       height: 45,
                       width: MediaQuery.of(context).size.width,
@@ -798,10 +827,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       height: 10,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       height: 45,
                       width: MediaQuery.of(context).size.width,
@@ -846,10 +875,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       height: 10,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       height: 45,
                       width: MediaQuery.of(context).size.width,
@@ -888,10 +917,10 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                       height: 10,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       height: 45,
                       width: MediaQuery.of(context).size.width,
@@ -947,28 +976,41 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          height: 130,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.deepPurple),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30, bottom: 9),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter Text';
-                                }
-                                return null;
-                              },
-                              controller: remarkcontroller,
-                              decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(fontSize: 12)),
+                        TextFormField(
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black),
+                          cursorColor: kPrimaryPurpleColor,
+                          keyboardType: TextInputType.text,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Field Required';
+                            }
+                          },
+                          controller: remarkcontroller,
+                          textInputAction: TextInputAction.done,
+                          decoration: const InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            contentPadding: EdgeInsets.fromLTRB(25, 10, 10, 80),
+                            fillColor: kPrimaryWhiteColor,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25.0)),
+                                borderSide:
+                                    BorderSide(color: kPrimaryPurpleColor)),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)),
+                              borderSide:
+                                  BorderSide(color: kPrimaryPurpleColor),
+                              gapPadding: 0,
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(
