@@ -22,13 +22,8 @@ class _DomesticScreenState extends State<DomesticScreen> {
 
   TextEditingController tenanttelnocontroller = TextEditingController();
 
-  String occupierinitvalue = 'Choose';
-  final occupiertype = [
-    'Choose',
-    'Owner',
-    'Tenant',
-    'Vacant**(please take photo for watermark)'
-  ];
+  String occupierinitvalue = 'Vacant';
+  final occupiertype = ['Owner', 'Tenant', 'Vacant', 'Closed'];
 
   String ownernamecorrectinitvalue = 'Choose';
   final ownernamecorrect = ['Choose', 'Yes', 'No'];
@@ -186,17 +181,17 @@ class _DomesticScreenState extends State<DomesticScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search_sharp),
-            color: Colors.deepPurple,
+            color: kPrimaryPurpleColor,
             onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.add_box),
-            color: Colors.deepPurple,
+            color: kPrimaryPurpleColor,
             onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.download_sharp),
-            color: Colors.deepPurple,
+            color: kPrimaryPurpleColor,
             onPressed: () {},
           )
         ],
@@ -209,7 +204,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
           },
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Form(
                   key: _formKey,
                   child: Column(
@@ -247,7 +242,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                         height: 20,
                       ),
                       const Text(
-                        "Owner1:NEO HOO @ NEW HOW . (If Owner 2 is available show else don't need )",
+                        "Owner1:NEO HOO @ NEW HOW .",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -257,7 +252,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                         height: 20,
                       ),
                       const Text(
-                        "(Add1,Add2,Add3,Add4) 4 JALAN TIMOR 12,TAMAN TIMOR,81300 JOHOR BAHRU,JOHOR",
+                        "(Address) 4 JALAN TIMOR 12,TAMAN TIMOR,81300 JOHOR BAHRU,JOHOR",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -354,7 +349,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           Container(
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.deepPurple),
+                              border: Border.all(color: kPrimaryPurpleColor),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             height: 45,
@@ -363,7 +358,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                               underline: Container(),
                               icon: const Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.deepPurple,
+                                color: kPrimaryPurpleColor,
                               ),
                               value: occupierinitvalue,
                               isExpanded: true,
@@ -402,7 +397,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           Container(
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.deepPurple),
+                              border: Border.all(color: kPrimaryPurpleColor),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             height: 45,
@@ -411,7 +406,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                               underline: Container(),
                               icon: const Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.deepPurple,
+                                color: kPrimaryPurpleColor,
                               ),
                               value: ownernamecorrectinitvalue,
                               isExpanded: true,
@@ -448,7 +443,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                       ),
                       textField("Tenant's tel no", tenanttelnocontroller),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       // Radio Button
@@ -539,7 +534,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           Container(
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.deepPurple),
+                              border: Border.all(color: kPrimaryPurpleColor),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             height: 45,
@@ -548,7 +543,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                               underline: Container(),
                               icon: const Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.deepPurple,
+                                color: kPrimaryPurpleColor,
                               ),
                               value: ownernamecorrectinitvalue,
                               isExpanded: true,
@@ -568,7 +563,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                         ],
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
 // Drop Down
@@ -586,7 +581,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           Container(
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.deepPurple),
+                              border: Border.all(color: kPrimaryPurpleColor),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             height: 45,
@@ -595,7 +590,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                               underline: Container(),
                               icon: const Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.deepPurple,
+                                color: kPrimaryPurpleColor,
                               ),
                               value: propertydomestictypeinitvalue,
                               isExpanded: true,
@@ -614,7 +609,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       // Drop Down
@@ -633,7 +628,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                           Container(
                             padding: const EdgeInsets.only(left: 20, right: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.deepPurple),
+                              border: Border.all(color: kPrimaryPurpleColor),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             height: 45,
@@ -642,7 +637,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                               underline: Container(),
                               icon: const Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.deepPurple,
+                                color: kPrimaryPurpleColor,
                               ),
                               value: drcodeinitvalue,
                               isExpanded: true,
@@ -662,17 +657,16 @@ class _DomesticScreenState extends State<DomesticScreen> {
                         ],
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Remark",
-                            style: const TextStyle(
-                                fontSize: 12, color: Colors.grey),
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                           const SizedBox(
                             height: 10,
@@ -723,7 +717,7 @@ class _DomesticScreenState extends State<DomesticScreen> {
                         width: MediaQuery.of(context).size.width,
                         height: 50,
                         child: RaisedButton(
-                          color: Colors.deepPurple,
+                          color: kPrimaryPurpleColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           onPressed: () {
