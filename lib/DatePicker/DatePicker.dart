@@ -1,67 +1,376 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 
-class DatePicker extends StatefulWidget {
-  const DatePicker({Key? key}) : super(key: key);
+class FieldScreen extends StatefulWidget {
+  const FieldScreen({Key? key}) : super(key: key);
 
   @override
-  State<DatePicker> createState() => _DatePickerState();
+  State<FieldScreen> createState() => _FieldScreenState();
 }
 
-class _DatePickerState extends State<DatePicker> {
-  DateTime selectedDate = DateTime.now();
-  final firstDate = DateTime(2021, 1);
-  final lastDate = DateTime(2030, 12);
+class _FieldScreenState extends State<FieldScreen> {
+  final List<Map> feild = [
+    {
+      'Name': '20-2021-D-F28-RCF24F25-LND (SELANGOR)',
+      'Type': 'Domestric DR',
+      "Created": '2021-12-12',
+      "Due": '2021-12-12',
+      "Task Assign": "3",
+      'Progress': '10% Complete'
+    },
+    {
+      'Name': '20-2021-D-F28-RCF24F25-LND (SELANGOR)',
+      'Type': 'Vacant',
+      "Created": '2021-12-12',
+      "Due": '2021-12-12',
+      "Task Assign": "3",
+      'Progress': '10% Complete'
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Text(
-            "$selectedDate".split('')[0],
-            style: TextStyle(fontSize: 20),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            //color: kPrimaryPurpleColor,
+            size: 25.0,
           ),
-          Divider(),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                _OpenDatePicker(context);
-              },
-              child: Text("Date")),
-          Divider(),
-          SizedBox(
-            height: 15,
-          ),
-          CalendarDatePicker(
-            initialDate: selectedDate,
-            firstDate: firstDate,
-            lastDate: lastDate,
-            onDateChanged: (newDate) {},
-          ),
-        ],
+          onPressed: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => HomeScreen()),
+            // );
+          },
+        ),
+        leadingWidth: 60,
+        centerTitle: true,
+        // title: ToggleSwitch(
+        //   minWidth: 60.0,
+        //   minHeight: 30.0,
+        //   cornerRadius: 10.0,
+        //   activeBgColors: [
+        //     [kPrimaryWhiteColor],
+        //     [kPrimaryWhiteColor]
+        //   ],
+        //   activeFgColor: primaryColor,
+        //   inactiveBgColor: kPrimaryGreyColor,
+        //   inactiveFgColor: primaryColor,
+        //   initialLabelIndex: 1,
+        //   totalSwitches: 2,
+        //   labels: ['Office', 'Field'],
+        //   radiusStyle: true,
+        //   onToggle: (index) {
+        //     print('switched to: $index');
+        //   },
+        // ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-    );
-  }
-
-  _OpenDatePicker(BuildContext context) async {
-    final DateTime? date = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: firstDate,
-        lastDate: lastDate);
-
-    print(date);
-  }
-
-  _openCalendarDatePicker(BuildContext context) async {
-    final calendar = await CalendarDatePicker(
-      initialDate: selectedDate,
-      firstDate: firstDate,
-      lastDate: lastDate,
-      onDateChanged: (newDate) {},
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (OverscrollIndicatorNotification overscroll) {
+          // ignore: deprecated_member_use
+          overscroll.disallowGlow();
+          return false;
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'List of assignment',
+                  style: TextStyle(
+                    // color: kPrimaryPurpleColor,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: screenHeight * 0.8,
+                width: screenWidth,
+                child: ListView.builder(
+                  itemCount: feild.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        if (feild[index]['Type'] == 'Domestric DR') {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => DeptAssignID(
+                          //       type: '',
+                          //     ),
+                          //   ),
+                          // );
+                        } else if (feild[index]['Type'] == 'Vacant') {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => VacantID(
+                          //       type: '',
+                          //     ),
+                          //   ),
+                          // );
+                        }
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              top: 10.0,
+                              right: 20.0,
+                              bottom: 10,
+                            ),
+                            child: Text(
+                              feild[index]['Name'],
+                              style: TextStyle(
+                                // color: kPrimaryPurpleColor,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(
+                              20.0,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Type",
+                                      style: TextStyle(
+                                        // color: primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      feild[index]['Type'],
+                                      style: TextStyle(
+                                        //  color: kPrimaryGreyColor,
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Created date",
+                                      style: TextStyle(
+                                        // color: primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      feild[index]['Created'],
+                                      style: TextStyle(
+                                        //    color: kPrimaryGreyColor,
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Due date",
+                                      style: TextStyle(
+                                        // color: primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      feild[index]['Due'],
+                                      style: TextStyle(
+                                        // color: kPrimaryGreyColor,
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Task Assign",
+                                      style: TextStyle(
+                                        //  color: primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      feild[index]['Task Assign'],
+                                      style: TextStyle(
+                                        //  color: kPrimaryGreyColor,
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Progress",
+                                      style: TextStyle(
+                                        // color: primaryColor,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      feild[index]['Progress'],
+                                      style: TextStyle(
+                                        // color: kPrimaryGreyColor,
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SizedBox(
+                                      width: 120.0,
+                                      child: OutlinedButton(
+                                        onPressed: () {
+                                          // Navigator.push(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           TaskManagementScreen()),
+                                          // );
+                                        },
+                                        style: OutlinedButton.styleFrom(
+                                          side: BorderSide(
+                                              //color: kPrimaryPurpleColor,
+                                              ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0),
+                                            side: BorderSide(
+                                                //color: kPrimaryPurpleColor
+                                                ),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "Bulk Update",
+                                          style: TextStyle(
+                                            //color: kPrimaryPurpleColor,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 20),
+                                    SizedBox(
+                                      width: 100.0,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          if (feild[index]['Type'] ==
+                                              'Domestric DR') {
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         DeptAssignID(
+                                            //       type: '',
+                                            //     ),
+                                            //   ),
+                                            // );
+                                          } else if (feild[index]['Type'] ==
+                                              'Vacant') {
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) => VacantID(
+                                            //       type: '',
+                                            //     ),
+                                            //   ),
+                                            // );
+                                          }
+                                        },
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.deepPurple),
+                                            shape: MaterialStateProperty.all(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)))),
+                                        child: Text(
+                                          "Manage",
+                                          style: TextStyle(
+                                            //  color: kPrimaryWhiteColor,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Divider(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
