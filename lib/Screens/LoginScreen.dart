@@ -17,20 +17,20 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  _login() async {
-    var logindata = {
-      'email': emailController,
-      'password': passwordController,
-    };
-    var res = callLoginapi().postData(logindata, 'login');
-    var newbody = json.decode(res.body);
+  // _login() async {
+  //   var logindata = {
+  //     'email': emailController,
+  //     'password': passwordController,
+  //   };
+  //   var res = callLoginapi().postData(logindata, 'login');
+  //   var newbody = json.decode(res.body);
 
-    if (newbody['errorMessage'] == false) {
-      if (newbody['message'] != null) {
-        print("Success");
-      }
-    }
-  }
+  //   if (newbody['errorMessage'] == false) {
+  //     if (newbody['message'] != null) {
+  //       print("Success");
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
                     onPressed: () {
-                      _login();
+                      // _login();
                     },
                     color: Colors.amber[600],
                     shape: RoundedRectangleBorder(
