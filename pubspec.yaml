@@ -35,6 +35,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   table_calendar: ^3.0.5
+  image_picker: ^0.8.5
+  file_picker: ^4.5.1
+  image_watermark: ^0.0.3
 
 dev_dependencies:
   flutter_test:
