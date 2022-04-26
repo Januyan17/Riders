@@ -3,7 +3,7 @@ import 'package:newriders/DatePicker/DatePicker.dart';
 import 'package:newriders/Screens/LoginScreen.dart';
 import 'package:newriders/Screens/PictureUpload.dart';
 import 'package:newriders/Screens/TaskManagement.dart';
-
+import 'package:newriders/sample.dart';
 import 'Calendar/calendar.dart';
 import 'Screens/DeptAssignment.dart';
 import 'Screens/DomesticScreen.dart';
@@ -12,6 +12,6 @@ import 'home.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: PictureUpload(),
+    home: CalendarScreen(),
   ));
 }

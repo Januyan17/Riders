@@ -1025,6 +1025,7 @@ class _DeptAssignmentScreenState extends State<DeptAssignmentScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                         onPressed: () {
+                          // print(remarkcontroller);
                           if (_formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Updating Data')),

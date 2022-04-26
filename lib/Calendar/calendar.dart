@@ -19,11 +19,19 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   CalendarFormat format = CalendarFormat.month;
 
-  DateTime selectedDay = DateTime.now();
+  DateTime selectedDay = DateTime.utc(2022, 4, 28);
   DateTime focusedDay = DateTime.now();
 
   DateTime selectedDay1 = DateTime.now();
   DateTime focusedDay1 = DateTime.now();
+
+  final Map<DateTime, List> _holidays = {
+    DateTime(2022, 4, 26): ['New Year\'s Day'],
+    DateTime(2022, 4, 27): ['Epiphany'],
+    DateTime(2022, 4, 28): ['Valentine\'s Day'],
+    DateTime(2022, 4, 29): ['Easter Sunday'],
+    DateTime(2022, 4, 30): ['Easter Monday'],
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +83,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         firstDay: DateTime(1990),
                         lastDay: DateTime(2030),
                         calendarFormat: format,
+                        // eventLoader: ,
                         // onFormatChanged: (CalendarFormat _format) {
                         //   setState(() {
                         //     format = _format;
@@ -86,33 +95,49 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             selectedDay = selectDay;
                             focusedDay = focusDay;
                           });
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AttendanceDetails()));
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (context) => AttendanceDetails()));
                         },
                         selectedDayPredicate: (DateTime date) {
                           return isSameDay(selectedDay, date);
                         },
+
                         calendarStyle: CalendarStyle(
                           isTodayHighlighted: true,
+                          // weekendDecoration: BoxDecoration(
+                          //   color: Colors.pink.shade100,
+                          //   shape: BoxShape.circle,
+                          // ),
                           selectedDecoration: BoxDecoration(
-                              color: Color.fromARGB(255, 140, 221, 171),
+                              color: Colors.green.shade50,
                               shape: BoxShape.circle),
-                          selectedTextStyle: TextStyle(
-                              color: Color.fromARGB(255, 33, 158, 38)),
+                          selectedTextStyle:
+                              TextStyle(color: Colors.green.shade600),
                           todayDecoration: BoxDecoration(
-                            color: Color.fromARGB(255, 112, 155, 228),
+                            color: Colors.grey.shade200,
                             shape: BoxShape.circle,
                           ),
-                          todayTextStyle: TextStyle(
-                              color: Color.fromARGB(255, 49, 65, 212)),
-                          holidayTextStyle: TextStyle(
-                              color: Color.fromARGB(255, 108, 19, 143)),
+                          todayTextStyle:
+                              TextStyle(color: Colors.grey.shade600),
+                          holidayDecoration: BoxDecoration(
+                            color: Color.fromARGB(255, 209, 7, 78),
+                            shape: BoxShape.circle,
+                          ),
+                          holidayTextStyle:
+                              TextStyle(color: Colors.pink.shade600),
                         ),
                         headerStyle: HeaderStyle(
                           formatButtonVisible: false,
                           formatButtonShowsNext: true,
                         ),
                       )),
+                  // RaisedButton(
+                  //   onPressed: () {
+                  //     Navigator.of(context).push(MaterialPageRoute(
+                  //         builder: (context) => TableEventsExample()));
+                  //   },
+                  //   child: Text("Next"),
+                  // ),
 
                   // Calendar 2
 
@@ -141,20 +166,25 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           return isSameDay(selectedDay1, date);
                         },
                         calendarStyle: CalendarStyle(
-                            isTodayHighlighted: true,
-                            selectedDecoration: BoxDecoration(
-                                color: Color.fromARGB(255, 248, 246, 136),
-                                shape: BoxShape.circle),
-                            selectedTextStyle: TextStyle(
-                                color: Color.fromARGB(255, 245, 230, 24)),
-                            todayDecoration: BoxDecoration(
-                              color: Color.fromARGB(255, 235, 148, 113),
-                              shape: BoxShape.circle,
-                            ),
-                            todayTextStyle: TextStyle(
-                                color: Color.fromARGB(255, 235, 76, 76)),
-                            holidayTextStyle: TextStyle(
-                                color: Color.fromARGB(255, 108, 19, 143))),
+                          isTodayHighlighted: true,
+                          todayDecoration: BoxDecoration(
+                              color: Colors.transparent,
+                              shape: BoxShape.circle),
+                          todayTextStyle:
+                              TextStyle(color: Colors.yellow.shade600),
+                          selectedDecoration: BoxDecoration(
+                            color: Colors.red.shade50,
+                            shape: BoxShape.circle,
+                          ),
+                          selectedTextStyle:
+                              TextStyle(color: Colors.red.shade600),
+                          holidayDecoration: BoxDecoration(
+                            color: Colors.pink.shade100,
+                            shape: BoxShape.circle,
+                          ),
+                          holidayTextStyle:
+                              TextStyle(color: Colors.pink.shade600),
+                        ),
                         headerStyle: HeaderStyle(
                           formatButtonVisible: false,
                           formatButtonShowsNext: true,
