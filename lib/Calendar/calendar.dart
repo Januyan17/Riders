@@ -18,20 +18,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
   // DateTime initialDate = DateTime.now();
 
   CalendarFormat format = CalendarFormat.month;
-// demo git
-  DateTime selectedDay = DateTime.utc(2022, 4, 28);
+
+  DateTime selectedDay = DateTime.utc(2022, 4, 29);
   DateTime focusedDay = DateTime.now();
 
   DateTime selectedDay1 = DateTime.now();
   DateTime focusedDay1 = DateTime.now();
-
-  final Map<DateTime, List> _holidays = {
-    DateTime(2022, 4, 26): ['New Year\'s Day'],
-    DateTime(2022, 4, 27): ['Epiphany'],
-    DateTime(2022, 4, 28): ['Valentine\'s Day'],
-    DateTime(2022, 4, 29): ['Easter Sunday'],
-    DateTime(2022, 4, 30): ['Easter Monday'],
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +71,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: TableCalendar(
+                        // holidayPredicate:_holidays,
                         focusedDay: selectedDay,
                         firstDay: DateTime(1990),
                         lastDay: DateTime(2030),
