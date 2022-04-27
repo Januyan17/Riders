@@ -8,6 +8,7 @@ import 'AttendanceDetails.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
+  void initState() {}
 
   @override
   State<CalendarScreen> createState() => _CalendarScreenState();
@@ -16,6 +17,12 @@ class CalendarScreen extends StatefulWidget {
 class _CalendarScreenState extends State<CalendarScreen> {
   // DateTime selectedDate = DateTime.now();
   // DateTime initialDate = DateTime.now();
+
+  List dates = [
+    {"date": DateTime.utc(2022, 4, 29), "color": "blue"},
+    {"date": DateTime.utc(2022, 4, 29), "color": "red"},
+    {"date": DateTime.utc(2022, 4, 29), "color": "green"},
+  ];
 
   CalendarFormat format = CalendarFormat.month;
 
@@ -37,7 +44,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
               color: kPrimaryPurpleColor,
               size: 25.0,
             ),
-            onPressed: () {},
+            onPressed: () {
+              print(dates[0]["color"]);
+            },
           ),
         ),
         body: NotificationListener<OverscrollIndicatorNotification>(
@@ -142,7 +151,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: TableCalendar(
-                        focusedDay: selectedDay,
+                        focusedDay: selectedDay1,
                         firstDay: DateTime(1990),
                         lastDay: DateTime(2030),
                         calendarFormat: format,
