@@ -1,6 +1,3 @@
-// Copyright 2019 Aleksander Woźniak
-// SPDX-License-Identifier: Apache-2.0
-
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -44,20 +41,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.dispose();
   }
 
-  // List<Event> _getEventsForDay(DateTime day) {
-  //   // Implementation example
-  //   return kEvents[day] ?? [];
-  // }
-
-  // List<Event> _getEventsForRange(DateTime start, DateTime end) {
-  //   // Implementation example
-  //   final days = daysInRange(start, end);
-
-  //   return [
-  //     for (final d in days) ..._getEventsForDay(d),
-  //   ];
-  // }
-
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
@@ -78,15 +61,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
       _rangeEnd = end;
       _rangeSelectionMode = RangeSelectionMode.toggledOn;
     });
-
-    // `start` or `end` could be null
-    // if (start != null && end != null) {
-    //   _selectedEvents.value = _getEventsForRange(start, end);
-    // } else if (start != null) {
-    //   _selectedEvents.value = _getEventsForDay(start);
-    // } else if (end != null) {
-    //   _selectedEvents.value = _getEventsForDay(end);
-    // }
   }
 
   @override
@@ -97,17 +71,23 @@ class _TableEventsExampleState extends State<TableEventsExample> {
         children: [
           TableCalendar<Event>(
             calendarBuilders:
-                CalendarBuilders(defaultBuilder: (context, day, focusedDay) {
+                CalendarBuilders(defaultBuilder: (context, daypar, focusedDay) {
               for (DateTime d in widget.highLights) {
-                if (day.day == d.day) {
+                if (daypar.day == d.day) {
+                  // print('daypar-------------');
+                  // print(daypar);
+                  // print(daypar.day);
+                  // print(d);
                   return Container(
-                    margin: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 167, 238, 144),
-                        borderRadius: BorderRadius.all(Radius.circular(130.0))),
+                    height: 40,
+                    width: 40,
+                    margin: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                        color: d.day == 14 ? Colors.green : Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(100.0))),
                     child: Center(
                       child: Text(
-                        '${day.day}',
+                        '${daypar.day}',
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),
@@ -125,7 +105,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             rangeSelectionMode: _rangeSelectionMode,
             startingDayOfWeek: StartingDayOfWeek.monday,
             calendarStyle: CalendarStyle(
-              // Use `CalendarStyle` to customize the UI
               outsideDaysVisible: false,
               isTodayHighlighted: false,
             ),
@@ -143,21 +122,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             },
           ),
           const SizedBox(height: 8.0),
-          // Expanded(
-          //   child: ValueListenableBuilder<List<Event>>(
-          //     valueListenable: _selectedEvents,
-          //     builder: (context, value, _) {
-          //       return ListView.builder(
-          //         itemCount: value.length,
-          //         itemBuilder: (context, index) {
-          //           return Container(
-
-          //               );
-          //         },
-          //       );
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );
