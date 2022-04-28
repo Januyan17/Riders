@@ -1,10 +1,20 @@
+// Copyright 2019 Aleksander Woźniak
+// SPDX-License-Identifier: Apache-2.0
+
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'utils.dart';
 
 class TableEventsExample extends StatefulWidget {
-  const TableEventsExample({Key? key}) : super(key: key);
+  TableEventsExample({Key? key}) : super(key: key);
+
+  final List<DateTime> highLights = [
+    DateTime(2022, DateTime.april, 14),
+    DateTime(2022, DateTime.april, 4),
+    DateTime(2022, DateTime.april, 23),
+    DateTime(2022, DateTime.april, 30),
+  ];
 
   @override
   _TableEventsExampleState createState() => _TableEventsExampleState();
@@ -25,7 +35,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.initState();
 
     _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
+    // _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
 
   @override
@@ -34,19 +44,19 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.dispose();
   }
 
-  List<Event> _getEventsForDay(DateTime day) {
-    // Implementation example
-    return kEvents[day] ?? [];
-  }
+  // List<Event> _getEventsForDay(DateTime day) {
+  //   // Implementation example
+  //   return kEvents[day] ?? [];
+  // }
 
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
+  // List<Event> _getEventsForRange(DateTime start, DateTime end) {
+  //   // Implementation example
+  //   final days = daysInRange(start, end);
 
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
+  //   return [
+  //     for (final d in days) ..._getEventsForDay(d),
+  //   ];
+  // }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, selectedDay)) {
@@ -57,8 +67,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
         _rangeEnd = null;
         _rangeSelectionMode = RangeSelectionMode.toggledOff;
       });
-
-      _selectedEvents.value = _getEventsForDay(selectedDay);
     }
   }
 
@@ -72,24 +80,41 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     });
 
     // `start` or `end` could be null
-    if (start != null && end != null) {
-      _selectedEvents.value = _getEventsForRange(start, end);
-    } else if (start != null) {
-      _selectedEvents.value = _getEventsForDay(start);
-    } else if (end != null) {
-      _selectedEvents.value = _getEventsForDay(end);
-    }
+    // if (start != null && end != null) {
+    //   _selectedEvents.value = _getEventsForRange(start, end);
+    // } else if (start != null) {
+    //   _selectedEvents.value = _getEventsForDay(start);
+    // } else if (end != null) {
+    //   _selectedEvents.value = _getEventsForDay(end);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TableCalendar - Events'),
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           TableCalendar<Event>(
+            calendarBuilders:
+                CalendarBuilders(defaultBuilder: (context, day, focusedDay) {
+              for (DateTime d in widget.highLights) {
+                if (day.day == d.day) {
+                  return Container(
+                    margin: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 167, 238, 144),
+                        borderRadius: BorderRadius.all(Radius.circular(130.0))),
+                    child: Center(
+                      child: Text(
+                        '${day.day}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  );
+                }
+              }
+            }),
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: _focusedDay,
@@ -98,11 +123,11 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             rangeEndDay: _rangeEnd,
             calendarFormat: _calendarFormat,
             rangeSelectionMode: _rangeSelectionMode,
-            eventLoader: _getEventsForDay,
             startingDayOfWeek: StartingDayOfWeek.monday,
             calendarStyle: CalendarStyle(
               // Use `CalendarStyle` to customize the UI
               outsideDaysVisible: false,
+              isTodayHighlighted: false,
             ),
             onDaySelected: _onDaySelected,
             onRangeSelected: _onRangeSelected,
@@ -118,32 +143,21 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             },
           ),
           const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
+          // Expanded(
+          //   child: ValueListenableBuilder<List<Event>>(
+          //     valueListenable: _selectedEvents,
+          //     builder: (context, value, _) {
+          //       return ListView.builder(
+          //         itemCount: value.length,
+          //         itemBuilder: (context, index) {
+          //           return Container(
+
+          //               );
+          //         },
+          //       );
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

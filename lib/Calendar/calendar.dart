@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures
 import 'package:flutter/material.dart';
+import 'package:newriders/sample.dart';
 
 import '../Constraints/constants.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -20,13 +21,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   List dates = [
     {"date": DateTime.utc(2022, 4, 29), "color": "blue"},
-    {"date": DateTime.utc(2022, 4, 29), "color": "red"},
-    {"date": DateTime.utc(2022, 4, 29), "color": "green"},
+    {"date": DateTime.utc(2022, 4, 30), "color": "red"},
+    {"date": DateTime.utc(2022, 4, 28), "color": "green"},
   ];
 
   CalendarFormat format = CalendarFormat.month;
 
-  DateTime selectedDay = DateTime.utc(2022, 4, 29);
+  // DateTime selectedDay = DateTime.utc(2022, 4, 29);
   DateTime focusedDay = DateTime.now();
 
   DateTime selectedDay1 = DateTime.now();
@@ -45,7 +46,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
               size: 25.0,
             ),
             onPressed: () {
-              print(dates[0]["color"]);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TableEventsExample()));
+              // print(map2);
+              // dates.map((e) => print(e));
+              // if (kDebugMode) {
+              //   print('dates');
+              // }
+              // print(dates[2]["date"]);
             },
           ),
         ),
@@ -80,8 +88,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: TableCalendar(
+                        //calendarBuilders: ,
                         // holidayPredicate:_holidays,
-                        focusedDay: selectedDay,
+                        focusedDay: dates[1]["date"],
+                        //focusedDay: dates[0]["date"],
                         firstDay: DateTime(1990),
                         lastDay: DateTime(2030),
                         calendarFormat: format,
@@ -94,14 +104,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         daysOfWeekVisible: true,
                         onDaySelected: (DateTime selectDay, DateTime focusDay) {
                           setState(() {
-                            selectedDay = selectDay;
+                            dates[1]["date"] = selectDay;
                             focusedDay = focusDay;
                           });
                           // Navigator.of(context).push(MaterialPageRoute(
                           //     builder: (context) => AttendanceDetails()));
                         },
                         selectedDayPredicate: (DateTime date) {
-                          return isSameDay(selectedDay, date);
+                          return isSameDay(dates[1]["date"], date);
                         },
 
                         calendarStyle: CalendarStyle(
